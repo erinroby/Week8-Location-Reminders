@@ -18,4 +18,4 @@
 * [Reading Assignments](../../Resources/ra-grading-standard/)
 * [Grading Rubrics](../../Resources/)
 * [Lecture Resources](lecture/)
-* [Lecture Slides](https://www.icloud.com/keynote/000ZdKyzCWyVHiIpOZlax8bbQ#Week7-Class2_2)
+* [Lecture Slides](https://www.icloud.com/keynote/0002PSxT891quC_xyaHmdrCYg#Week7_Day2)
