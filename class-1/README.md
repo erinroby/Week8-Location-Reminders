@@ -1,6 +1,5 @@
 #Week 7 - Class 1
 ##Lab Assignment
-* Get all Screenshots setup for app submission.
 * Download Parse Documentation to Dash.
 * Get your project setup in Objective-C.
 * Create a single view controller, that has a map view that takes up most the screen, and 3 buttons below it.
