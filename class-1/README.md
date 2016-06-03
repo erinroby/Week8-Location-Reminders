@@ -1,4 +1,5 @@
 #Week 7 - Class 1
+##Lab Assignment
 * Get all Screenshots setup for app submission.
 * Download Parse Documentation to Dash.
 * Get your project setup in Objective-C.
@@ -8,10 +9,10 @@
 	* Implement Stack and Queue in Objective-C. You can implement them in the same project as your map app is in, since Objective-C does not support playgrounds.
 
 ###Reading Assignment
-* Parse Documentation
-	* PFQuery
-	* PFObject
-	* PFGeoPoint
+* Programming in Objective-C:
+  * **Chapter 9:** Polymorphism, Dynamic Typing and Dymanic Binding
+* Apple Documentation
+  * MapKit
 
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)

@@ -1,10 +1,16 @@
 #Week 7 - Class 4
+##Lab Assignment
+* Use Region monitoring and schedule a location based reminder in the AddReminderDetailViewController
 * Add local notifications when the user enters a region
-* Add a map overlay to show all of the currently monitored regions (load from Parse)
-* **Code Challenge:** 
-	* Implement a linked list
-* **Bonus:** 
-	* 
+* Upon creation of your reminder, upload to ParseServer.
+* On first launch, your app should fetch all reminders and display on the mapView.
+
+###Reading Assignment:
+* Programming in Objective-C
+  * Chapter 11: Categories and Protocols
+* Apple Documentation
+  * MKCircleView
+  * MKMapViewOverlay
 
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)
