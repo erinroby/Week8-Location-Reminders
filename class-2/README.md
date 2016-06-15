@@ -8,11 +8,10 @@
 	* Write a method that detects if two strings are anagrams.
 
 ###Reading Assignment:
-* Programming In Objective-C
-  * **Chapter 8:** Inheritance
+* Programming in Objective-C
+  * **Chapter 10:** More on Variables and Data Types
 * Apple Documentation
-  * CoreLocation
-  * UILongPressGestureRecognizer
+  * Notification Center
 
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)

@@ -8,11 +8,12 @@
 	* Implement Stack and Queue in Objective-C. You can implement them in the same project as your map app is in, since Objective-C does not support playgrounds.
 
 ###Reading Assignment
-* Programming in Objective-C:
-  * **Chapter 9:** Polymorphism, Dynamic Typing and Dymanic Binding
+* Programming In Objective-C
+  * **Chapter 8:** Inheritance
 * Apple Documentation
-  * MapKit
-
+  * CoreLocation
+  * UILongPressGestureRecognizer
+	
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)
 * [Grading Rubrics](../../Resources/)

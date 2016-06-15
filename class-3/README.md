@@ -10,9 +10,10 @@
 
 ###Reading Assignment:
 * Programming in Objective-C
-  * **Chapter 10:** More on Variables and Data Types
+  * Chapter 11: Categories and Protocols
 * Apple Documentation
-  * Notification Center
+  * MKCircleView
+  * MKMapViewOverlay
 
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)

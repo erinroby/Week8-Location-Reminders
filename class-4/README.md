@@ -6,11 +6,8 @@
 * On first launch, your app should fetch all reminders and display on the mapView.
 
 ###Reading Assignment:
-* Programming in Objective-C
-  * Chapter 11: Categories and Protocols
-* Apple Documentation
-  * MKCircleView
-  * MKMapViewOverlay
+* Cracking the coding Interview/Programming Interviews Exposed:
+  * Hash Table
 
 ##Other Resources
 * [Reading Assignments](../../Resources/ra-grading-standard/)
