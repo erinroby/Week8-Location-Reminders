@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G9o-5F-tcd">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCy-I7-N0Z">
+                                <rect key="frame" x="60" y="605" width="30" height="30"/>
+                                <state key="normal" title="H1"/>
+                                <connections>
+                                    <action selector="firstLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJA-5S-A81"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTM-mV-cn4">
+                                <rect key="frame" x="510" y="605" width="30" height="30"/>
+                                <state key="normal" title="H3"/>
+                                <connections>
+                                    <action selector="thirdLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1b2-Gm-rZ9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bv-y0-zVT">
+                                <rect key="frame" x="285" y="605" width="30" height="30"/>
+                                <state key="normal" title="H2"/>
+                                <connections>
+                                    <action selector="secondLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iox-IK-GgB"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nph-3S-5gs">
+                                <rect key="frame" x="20" y="20" width="560" height="560"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Nph-3S-5gs" secondAttribute="height" multiplier="1:1" id="WFD-bf-SDo"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="GnX-Jy-0SY" appends="YES" id="C17-R5-O9m"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Nph-3S-5gs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="27t-Dc-wPM"/>
+                            <constraint firstAttribute="trailing" secondItem="Nph-3S-5gs" secondAttribute="trailing" constant="20" id="8ir-MV-Bxz"/>
+                            <constraint firstItem="8Bv-y0-zVT" firstAttribute="centerY" secondItem="vCy-I7-N0Z" secondAttribute="centerY" id="N2y-KW-S5Y"/>
+                            <constraint firstItem="vCy-I7-N0Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="Z2n-fF-PSz"/>
+                            <constraint firstItem="vCy-I7-N0Z" firstAttribute="top" secondItem="Nph-3S-5gs" secondAttribute="bottom" constant="25" id="cy0-iI-WVa"/>
+                            <constraint firstItem="8Bv-y0-zVT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d70-yq-9vi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GTM-mV-cn4" secondAttribute="trailing" constant="40" id="pY7-64-MwJ"/>
+                            <constraint firstItem="GTM-mV-cn4" firstAttribute="centerY" secondItem="vCy-I7-N0Z" secondAttribute="centerY" id="uOn-z0-xhV"/>
+                            <constraint firstItem="Nph-3S-5gs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yFU-LP-L9y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="M8O-4g-7df"/>
+                    <connections>
+                        <outlet property="mapView" destination="Nph-3S-5gs" id="9zL-vX-iSs"/>
+                        <segue destination="MMO-Bj-8Qy" kind="show" identifier="DetailViewController" id="6gK-9K-hAG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="GnX-Jy-0SY">
+                    <connections>
+                        <action selector="handleLongPress:" destination="BYZ-38-t0r" id="GyL-DG-Y31"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1257" y="441"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="a9r-hq-WJ1">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="MMO-Bj-8Qy" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2u9-gu-kl8"/>
+                        <viewControllerLayoutGuide type="bottom" id="qiw-E0-i29"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tz9-Zu-28A">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TFG-wZ-jFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2012" y="441"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="PhW-wS-Rgb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G9o-5F-tcd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S42-3g-1C8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="57l-Ag-Lkg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VJl-oy-iiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="445" y="441"/>
+        </scene>
+    </scenes>
+</document>
