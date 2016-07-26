@@ -20,6 +20,8 @@
 		0D1EC2361D46B20F00654734 /* Bolts.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0D1EC2311D46B1FE00654734 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D1EC23A1D47175600654734 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EC2391D47175600654734 /* Stack.m */; };
 		0D1EC23D1D47176400654734 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EC23C1D47176400654734 /* Queue.m */; };
+		0DC667451D47CDFE009572C6 /* locationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC667441D47CDFE009572C6 /* locationController.m */; };
+		0DC667481D47DFEA009572C6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC667471D47DFEA009572C6 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,10 @@
 		0D1EC2391D47175600654734 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		0D1EC23B1D47176400654734 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		0D1EC23C1D47176400654734 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		0DC667431D47CDFE009572C6 /* locationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = locationController.h; sourceTree = "<group>"; };
+		0DC667441D47CDFE009572C6 /* locationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = locationController.m; sourceTree = "<group>"; };
+		0DC667461D47DFEA009572C6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		0DC667471D47DFEA009572C6 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,10 +97,9 @@
 			isa = PBXGroup;
 			children = (
 				0D1EC23E1D47176C00654734 /* Code Challenge */,
+				0DC667491D47DFF2009572C6 /* Controller */,
 				0D1EC21A1D46823000654734 /* AppDelegate.h */,
 				0D1EC21B1D46823000654734 /* AppDelegate.m */,
-				0D1EC21D1D46823000654734 /* ViewController.h */,
-				0D1EC21E1D46823000654734 /* ViewController.m */,
 				0D1EC2201D46823000654734 /* Main.storyboard */,
 				0D1EC2231D46823000654734 /* Assets.xcassets */,
 				0D1EC2251D46823000654734 /* LaunchScreen.storyboard */,
@@ -131,6 +136,19 @@
 				0D1EC23C1D47176400654734 /* Queue.m */,
 			);
 			name = "Code Challenge";
+			sourceTree = "<group>";
+		};
+		0DC667491D47DFF2009572C6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0DC667431D47CDFE009572C6 /* locationController.h */,
+				0DC667441D47CDFE009572C6 /* locationController.m */,
+				0D1EC21D1D46823000654734 /* ViewController.h */,
+				0D1EC21E1D46823000654734 /* ViewController.m */,
+				0DC667461D47DFEA009572C6 /* DetailViewController.h */,
+				0DC667471D47DFEA009572C6 /* DetailViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,9 +229,11 @@
 			files = (
 				0D1EC23D1D47176400654734 /* Queue.m in Sources */,
 				0D1EC23A1D47175600654734 /* Stack.m in Sources */,
+				0DC667451D47CDFE009572C6 /* locationController.m in Sources */,
 				0D1EC21F1D46823000654734 /* ViewController.m in Sources */,
 				0D1EC21C1D46823000654734 /* AppDelegate.m in Sources */,
 				0D1EC2191D46823000654734 /* main.m in Sources */,
+				0DC667481D47DFEA009572C6 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
