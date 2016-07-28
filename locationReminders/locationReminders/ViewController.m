@@ -8,11 +8,12 @@
 
 #import "ViewController.h"
 @import MapKit;
+@import ParseUI;
 #import <Parse/Parse.h>
 #import "locationController.h"
 #import "DetailViewController.h"
 
-@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate>
+@interface ViewController () <MKMapViewDelegate, LocationControllerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property(strong, nonatomic) UIColor *pinTintColor;
@@ -31,8 +32,11 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
+    
     [self setDefaultAnnotations];
     [self getColor];
+    
+    [self login];
     
 //    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
 //    testObject[@"foo"] = @"bar";
@@ -56,7 +60,16 @@
     
     [[LocationController sharedController]setDelegate:self];
     [[[LocationController sharedController]locationmanager]startUpdatingLocation]; // Message - Sender all nested obj-C style.
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(testObserverFired) name:@"TestNotification" object:nil];
 }
+
+//-(void)dealloc {
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TestNotification" object:nil];
+//}
+//
+//-(void)testObserverFired {
+//    NSLog(@"Notification Fired");
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -111,6 +124,7 @@
             letter = [NSString stringWithFormat:@"%c", [stringOne characterAtIndex:i]];
             [stringOneArray addObject:letter];
         }
+        
         NSArray *sortedStringOneArray = [stringOneArray sortedArrayUsingSelector:@selector(compare:)];
         NSArray *sortedStringTwoArray = [stringTwoArray sortedArrayUsingSelector:@selector(compare:)];
 
@@ -122,6 +136,19 @@
         }
     }
     return NO;
+}
+
++(NSNumber *)numSumFromString:(NSString *)text {
+    int sum = 0;
+    NSCharacterSet *character = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    NSString *numAsString = [[text componentsSeparatedByCharactersInSet:character]componentsJoinedByString:@""];
+    while (numAsString != nil) {
+        int value = [numAsString intValue];
+        sum += value;
+    }
+    
+    return [NSNumber numberWithInt:sum];
 }
 
 // <-- End Code Challenge.
@@ -191,13 +218,64 @@
             DetailViewController *detailViewController = (DetailViewController *)segue.destinationViewController;
             detailViewController.annotationTitle = annotationView.annotation.title;
             detailViewController.coordinate = annotationView.annotation.coordinate;
-        
+            
+            __weak typeof (self) weakSelf = self;
+            
+            detailViewController.completion = ^(MKCircle *circle) {
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+
+                [strongSelf.mapView removeAnnotation:annotationView.annotation];
+                [strongSelf.mapView addOverlay:circle];
+            };
         }
     }
 }
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"DetailViewController" sender:view];
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+    circleRenderer.fillColor = [UIColor colorWithRed:0.96 green:0.80 blue:0.91 alpha:0.5];
+    circleRenderer.strokeColor = [UIColor colorWithRed:1.00 green:0.32 blue:0.33 alpha:0.5];
+    circleRenderer.lineWidth = 2.0;
+    
+    return circleRenderer;
+}
+
+#pragma MARK Pase Login/Signup
+
+-(void)login {
+    if (![PFUser currentUser]) {
+        PFLogInViewController *loginViewController = [[PFLogInViewController alloc]init];
+        
+        loginViewController.delegate = self;
+        loginViewController.signUpController.delegate = self;
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    } else {
+        [self setupAdditionalUI];
+    }
+}
+
+-(void)setupAdditionalUI {
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signOut)];
+    self.navigationItem.leftBarButtonItem = signOutButton;
+}
+
+-(void)signOut {
+    [PFUser logOut];
+    [self login];
+}
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
+}
+
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setupAdditionalUI];
 }
 
 @end

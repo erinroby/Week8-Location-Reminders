@@ -10,9 +10,12 @@
 @import UIKit;
 @import MapKit;
 
+typedef void(^DetailViewControllerCompletion)(MKCircle *circle); // this a callback. look back at closures for more.
+
 @interface DetailViewController : UIViewController
 
 @property(strong, nonatomic) NSString *annotationTitle;
 @property(nonatomic) CLLocationCoordinate2D coordinate; // This is a struct.
+@property(copy, nonatomic) DetailViewControllerCompletion completion; // public because viewcontroller needs it.
 
 @end

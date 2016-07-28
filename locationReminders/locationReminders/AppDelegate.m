@@ -17,12 +17,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     [Parse initializeWithConfiguration:[ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration> _Nonnull configuration) {
-        
         configuration.applicationId = @"erin-location-reminders-server";
         configuration.clientKey = @"myMasterKey";
         configuration.server = @"https://erin-location-reminders-server.herokuapp.com/parse";
     }]];
+    
     return YES;
 }
 
