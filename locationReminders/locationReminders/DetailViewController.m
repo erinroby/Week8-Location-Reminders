@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 #import "Reminder.h"
+#import "locationController.h"
+@import MapKit;
 
 @interface DetailViewController()
 
@@ -35,13 +37,24 @@
     reminder.name = reminderName;
     reminder.radius = radius;
     
-    reminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude]; // this is the same for the homework.
+    reminder.location = [PFGeoPoint geoPointWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
     
-    if (self.completion) {
-        self.completion([MKCircle circleWithCenterCoordinate:self.coordinate radius:radius.floatValue]);
+    __weak typeof(self) weakSelf = self;
+    
+    [reminder saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        NSLog(@"Reminder Save to our Parse Server.");
+       
+        if (strongSelf.completion) {
+            if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+                CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:strongSelf.coordinate radius:radius.floatValue identifier:reminderName];
+                [[[LocationController sharedController]locationManager]startMonitoringForRegion:region];
+                strongSelf.completion([MKCircle circleWithCenterCoordinate:strongSelf.coordinate radius:radius.floatValue]);
+                [strongSelf.navigationController popViewControllerAnimated:YES];
+            }
+        }
         
-        [self.navigationController popViewControllerAnimated:YES]; // as soon as we complete and the completion is called, we dismiss the view controller.
-    }
+    }];
 }
 
 @end

@@ -34,42 +34,27 @@
     [self.mapView setShowsUserLocation:YES];
     
     [self setDefaultAnnotations];
+    [self setReminderAnnotations];
     [self getColor];
     
     [self login];
-    
-//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-//    testObject[@"foo"] = @"bar";
-//    [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        NSLog(@"Succeeded: %i, Error: %@", succeeded, error);
-//    }];
-   
-//    PFQuery *query = [PFQuery queryWithClassName:@"TestObject"]; // you can assign predicates to these.
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *_Nullable objects, NSError * _Nullable error) {
-//        if (!error) {
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                NSLog(@"Objects: %@", objects);
-//            }];
-//        }
-//    }];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [[LocationController sharedController]setDelegate:self];
-    [[[LocationController sharedController]locationmanager]startUpdatingLocation]; // Message - Sender all nested obj-C style.
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(testObserverFired) name:@"TestNotification" object:nil];
+    [[[LocationController sharedController]locationManager]startUpdatingLocation]; // Message - Sender all nested obj-C style.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(testObserverFired) name:@"TestNotification" object:nil];
 }
 
-//-(void)dealloc {
-//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TestNotification" object:nil];
-//}
-//
-//-(void)testObserverFired {
-//    NSLog(@"Notification Fired");
-//}
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"TestNotification" object:nil];
+}
+
+-(void)testObserverFired {
+    NSLog(@"Notification Fired");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -93,6 +78,34 @@
         newPoint.title = pointer[@"title"];
         [self.mapView addAnnotation:newPoint];
     }
+}
+
+-(void)setReminderAnnotations {
+    PFQuery *query = [PFQuery queryWithClassName:@"Reminder"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *_Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                for (id object in objects) {
+                    MKCircle *circle = [[MKCircle alloc]init];
+                    
+                    PFGeoPoint *geoPoint = object[@"location"];
+                    MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+                    
+                    CLLocationCoordinate2D newPointCoordinates = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude);
+                    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:newPointCoordinates radius:[object[@"radius"] doubleValue] identifier:object[@"name"]];
+                    
+                    [[[LocationController sharedController]locationManager]startMonitoringForRegion:region];
+                    circle = [MKCircle circleWithCenterCoordinate:newPointCoordinates radius:[object[@"radius"] doubleValue]];
+                    
+                    newPoint.coordinate = newPointCoordinates;
+                    newPoint.title = object[@"name"];
+                    [self.mapView addAnnotation:newPoint];
+                    
+                    [self.mapView addOverlay:circle];
+                }
+            }];
+        }
+    }];
 }
 
 -(UIColor *)getColor {
@@ -223,8 +236,6 @@
             
             detailViewController.completion = ^(MKCircle *circle) {
                 __strong typeof(weakSelf) strongSelf = weakSelf;
-
-                [strongSelf.mapView removeAnnotation:annotationView.annotation];
                 [strongSelf.mapView addOverlay:circle];
             };
         }
@@ -240,7 +251,6 @@
     circleRenderer.fillColor = [UIColor colorWithRed:0.96 green:0.80 blue:0.91 alpha:0.5];
     circleRenderer.strokeColor = [UIColor colorWithRed:1.00 green:0.32 blue:0.33 alpha:0.5];
     circleRenderer.lineWidth = 2.0;
-    
     return circleRenderer;
 }
 

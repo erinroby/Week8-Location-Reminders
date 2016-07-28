@@ -17,7 +17,7 @@
 
 @interface LocationController : NSObject
 
-@property(strong, nonatomic) CLLocationManager *locationmanager;
+@property(strong, nonatomic) CLLocationManager *locationManager;
 @property(strong, nonatomic) CLLocation *location;
 @property(weak, nonatomic) id delegate; // any object could be the delegate!
 
